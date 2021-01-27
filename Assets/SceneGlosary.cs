@@ -11,6 +11,10 @@ public class SceneGlosary : MonoBehaviour
     public GameObject deadEndingGO;
     public GameObject anxietyEndingGO;
 
+    public void LoadScene(string sName)
+    {
+        SceneManager.LoadScene(SceneManager.GetSceneByName(sName).buildIndex);
+    }
 
     void Awake()
     {
