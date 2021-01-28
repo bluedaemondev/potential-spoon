@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Wire : MonoBehaviour
 {
+    [Header("audio")]
+    public AudioClip clipOkCable;
+
+    [Space]
     //pos inicial del cable
     Vector3 startPoint;
     public SpriteRenderer wireEnd;
@@ -61,6 +65,7 @@ public class Wire : MonoBehaviour
     void Done()
     {
         lightOn.SetActive(true);
+        AudioManager.instance.PlayEffect(clipOkCable);
         Destroy(this);
     }
 

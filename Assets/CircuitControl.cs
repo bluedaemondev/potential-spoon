@@ -14,7 +14,7 @@ public class CircuitControl : MonoBehaviour
     public int qtyCircuits = 0;
 
     [Header("Condicion de victoria")]
-    public int requiredCircuits = 512;
+    public int requiredCircuits = 15;
 
 
 

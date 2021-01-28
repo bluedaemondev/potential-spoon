@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class RejectCircuit : MonoBehaviour
 {
+    [Header("audios")]
+    public AudioClip clipMarkAsDone;
+
+    //[Space]
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    }
+    void OnMouseUp()
     {
-        
+        //CircuitControl.instance.LoadNewCircuit();
+        CircuitControl.instance.currentCircuit.transform.parent.GetComponent<Animator>().SetTrigger("exit"); // lo elimino por animacion
+        AudioManager.instance.PlayEffect(clipMarkAsDone);
+
     }
 }

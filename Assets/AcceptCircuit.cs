@@ -9,6 +9,12 @@ public class AcceptCircuit : MonoBehaviour
     //{
 
     //}
+    [Header("audios")]
+    public AudioClip clipMarkAsDone;
+    public AudioClip clipRejectInput;
+
+
+    [Space]
     public SpriteRenderer sprrend;
 
 
@@ -25,17 +31,25 @@ public class AcceptCircuit : MonoBehaviour
 
     void OnMouseUp()
     {
-        CircuitControl.instance.currentCircuit.transform.parent.GetComponent<Animator>().SetTrigger("exit"); // lo elimino por animacion
-
-        //CircuitControl.instance.LoadNewCircuit();
-        sprrend.color = notReadyToSendColor;
-
+        if (available)
+        {
+            //CircuitControl.instance.LoadNewCircuit();
+            CircuitControl.instance.currentCircuit.transform.parent.GetComponent<Animator>().SetTrigger("exit"); // lo elimino por animacion
+            sprrend.color = notReadyToSendColor;
+            CircuitControl.instance.AddQtyToTotals(1);
+            available = false;
+        }
+        else
+        {
+            AudioManager.instance.PlayEffect(clipRejectInput);
+        }
     }
 
     // evento de feedback para mostrar que puedo entregar el tablero ?
     public void MarkAsDone()
     {
         sprrend.color = readyToSendColor;
+        AudioManager.instance.PlayEffect(clipMarkAsDone);
         available = true;
 
 
