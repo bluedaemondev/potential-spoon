@@ -12,9 +12,13 @@ public class CircuitControl : MonoBehaviour
 
     [Header("Rechazar = -1 , Aprobar = 1")]
     public int qtyCircuits = 0;
+    [Header("Maximo de circuitos para final CitizenScore")]
+    public int maxQtyCircuitsCitizen = 1028;
 
     [Header("Condicion de victoria")]
-    public int requiredCircuits = 15;
+    public int requiredCircuits = 512;
+
+
 
 
 
@@ -50,6 +54,24 @@ public class CircuitControl : MonoBehaviour
     public void AddQtyToTotals(int number)
     {
         this.qtyCircuits += number;
+        
         FindObjectOfType<CircuitsRemainingUI>().NewTotal(this.qtyCircuits);
+        FindObjectOfType<ProductivityScoreUI>().CalcTotal(number);
+
+        if(number < 0)
+        {
+            FindObjectOfType<LampScript>().BeepAlarm();
+        }
+
+        if (this.qtyCircuits >= requiredCircuits &&
+            FindObjectOfType<ProductivityScoreUI>().currentScore >= 10)
+        { 
+            SceneGlosary.instance.TrueEnding();
+        }
+        if (qtyCircuits >= maxQtyCircuitsCitizen &&
+            FindObjectOfType<ProductivityScoreUI>().currentScore < 1)
+        {
+            SceneGlosary.instance.CitizenScoreZeroEnding();
+        }
     }
 }

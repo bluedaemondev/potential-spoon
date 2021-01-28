@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class FoodButton : MonoBehaviour
 {
-    public float cooldownFactor = 5f; //0.005 - 0.1 
+    [Range(0,1)]
+    public float cooldownFactor = 0.3f; //0.005 - 0.1 
 
     public float healthGiven = -10;
     public float anxietyGiven = -10;
     public float selfAwarenessGiven = 10;
 
+    public int circuitsGiven = 0;
+
     public bool available = true;
 
     SpriteRenderer sprrend;
     GameObject maskCd;
+
+    Color startColor;
 
 
     //public float selfAwareness 
@@ -23,6 +28,7 @@ public class FoodButton : MonoBehaviour
     {
         sprrend = GetComponent<SpriteRenderer>();
         maskCd = transform.GetChild(0).gameObject;
+        startColor = sprrend.color;
     }
 
     //// Update is called once per frame
@@ -36,6 +42,8 @@ public class FoodButton : MonoBehaviour
         if (available)
         {
             PlayerController.instance.UpdateStats(healthGiven, anxietyGiven, selfAwarenessGiven);
+            CircuitControl.instance.AddQtyToTotals(circuitsGiven);
+
             StartCoroutine(Cooldown(cooldownFactor));
         }
     }
@@ -45,7 +53,7 @@ public class FoodButton : MonoBehaviour
         available = false;
         sprrend.color = Color.grey;
 
-        maskCd.transform.localScale = Vector3.one * 0.8f; // mascara chica
+        maskCd.transform.localScale = Vector3.one * 0.1f; // mascara chica
         float currTimer = 0;
         
 
@@ -58,7 +66,7 @@ public class FoodButton : MonoBehaviour
             yield return null;
         }
 
-        sprrend.color = Color.white;
+        sprrend.color = startColor;
         available = true;
 
     }

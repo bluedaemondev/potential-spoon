@@ -37,6 +37,9 @@ public class AcceptCircuit : MonoBehaviour
             CircuitControl.instance.currentCircuit.transform.parent.GetComponent<Animator>().SetTrigger("exit"); // lo elimino por animacion
             sprrend.color = notReadyToSendColor;
             CircuitControl.instance.AddQtyToTotals(1);
+
+            FindObjectOfType<MessagePusher>().PlayGoodPushNotif();
+
             available = false;
         }
         else

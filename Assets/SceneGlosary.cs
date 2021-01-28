@@ -11,11 +11,6 @@ public class SceneGlosary : MonoBehaviour
     public GameObject deadEndingGO;
     public GameObject anxietyEndingGO;
 
-    public void LoadScene(string sName)
-    {
-        SceneManager.LoadScene(SceneManager.GetSceneByName(sName).buildIndex);
-    }
-
     void Awake()
     {
         if (!instance)
@@ -23,5 +18,31 @@ public class SceneGlosary : MonoBehaviour
             instance = this;
         }
     }
+
+    void LoadScene(string sName)
+    {
+        SceneManager.LoadScene(SceneManager.GetSceneByName(sName).buildIndex);
+    }
+
+    public void AnxietyEnding()
+    {
+        LoadScene("anxietyEnding");
+    }
+
+    public void DeadEnding()
+    {
+        LoadScene("deadEnding");
+    }
+    public void CitizenScoreZeroEnding()
+    {
+        LoadScene("citizenEnding");
+    }
+
+    public void TrueEnding()
+    {
+        LoadScene("trueEnding");
+    }
+
+
 
 }

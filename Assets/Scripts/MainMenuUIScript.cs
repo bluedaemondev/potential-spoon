@@ -29,6 +29,7 @@ public class MainMenuUIScript : MonoBehaviour
 
         //ManagerIntroduccion.instance.startIntroductionEvent.Invoke();
         //ManagerIntroduccion.instance.DisableChildren();
+
         Debug.Log("playing ");
         this.mainPanel.SetActive(false);
         this.howToPlayPanel.SetActive(false);

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -59,7 +60,8 @@ public class PlayerController : MonoBehaviour
 
         UpdateUI();
 
-        if (anxietyLevelCurrent * selfAwarenesLevelCurrent * healthLevelCurrent != 0)
+        if (anxietyLevelCurrent >= 100 || selfAwarenesLevelCurrent >= 100 ||
+            healthLevelCurrent <= 0)
         {
             HandlePlayerLose();
         }
@@ -84,30 +86,20 @@ public class PlayerController : MonoBehaviour
     }
     void HandlePlayerLose()
     {
-        if(anxietyLevelCurrent <= 0)
+        if(anxietyLevelCurrent >= 100)
         {
-            AnxietyEnding();
+            SceneGlosary.instance.AnxietyEnding();
 
         }
-        if (selfAwarenesLevelCurrent <= 0)
+        if (selfAwarenesLevelCurrent >= 100)
         {
-            AnxietyEnding();
+            SceneGlosary.instance.AnxietyEnding();
 
         }
         if (healthLevelCurrent <= 0)
         {
-            DeadEnding();
+            SceneGlosary.instance.DeadEnding();
 
         }
-    }
-
-    void AnxietyEnding()
-    {
-        // do stuff
-    }
-
-    void DeadEnding()
-    {
-
     }
 }
