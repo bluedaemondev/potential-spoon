@@ -15,6 +15,8 @@ public class AcceptCircuit : MonoBehaviour
     public Color readyToSendColor;
     public Color notReadyToSendColor;
 
+    public bool available = false;
+
     private void Start()
     {
         sprrend = GetComponent<SpriteRenderer>();
@@ -34,6 +36,7 @@ public class AcceptCircuit : MonoBehaviour
     public void MarkAsDone()
     {
         sprrend.color = readyToSendColor;
+        available = true;
 
 
     }

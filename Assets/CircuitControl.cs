@@ -10,6 +10,10 @@ public class CircuitControl : MonoBehaviour
 
     public CircuitInfo currentCircuit;
 
+    [Header("Rechazar = -1 , Aprobar = 1")]
+    public int qtyCircuits = 0;
+
+
 
     // Start is called before the first frame update
     void Awake()

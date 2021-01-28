@@ -19,6 +19,11 @@ public class Wire : MonoBehaviour
         startPoint = transform.parent.position;    
     }
 
+    private void OnMouseDown()
+    {
+        startPoint = transform.parent.position;
+    }
+
     void OnMouseDrag()
     {
         Vector3 newPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -38,6 +43,8 @@ public class Wire : MonoBehaviour
                 {
                     col.GetComponent<Wire>()?.Done();
                     Done();
+                    FindObjectOfType<CircuitInfo>().AddConnectionToTotal();
+
                 }
 
                 return;
