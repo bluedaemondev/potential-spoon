@@ -13,6 +13,9 @@ public class CircuitControl : MonoBehaviour
     [Header("Rechazar = -1 , Aprobar = 1")]
     public int qtyCircuits = 0;
 
+    [Header("Condicion de victoria")]
+    public int requiredCircuits = 512;
+
 
 
     // Start is called before the first frame update
@@ -42,5 +45,11 @@ public class CircuitControl : MonoBehaviour
         currentCircuit.transform.localPosition = Vector3.zero;
 
         //currentCircuit.transform.parent.GetComponent<Animator>().Play("tableroEntrada"); // lo inicializo por animacion
+    }
+
+    public void AddQtyToTotals(int number)
+    {
+        this.qtyCircuits += number;
+        FindObjectOfType<CircuitsRemainingUI>().NewTotal(this.qtyCircuits);
     }
 }
