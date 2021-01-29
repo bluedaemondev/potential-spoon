@@ -46,7 +46,7 @@ public class FoodButton : MonoBehaviour
         result += "S.Awr " + (selfAwarenessGiven > 0 ? "+" : "") + this.selfAwarenessGiven + "\n";
         result += "Hlth " + (healthGiven > 0 ? "+": "" ) + this.healthGiven + "\n";
 
-        result += "Circuits " + (circuitsGiven > 0 ? "-" : "") + this.circuitsGiven;
+        result += "Circuits " + (circuitsGiven > 0 ? "-" : "+") + Mathf.Abs(this.circuitsGiven);
 
         return result;
     }
@@ -69,6 +69,9 @@ public class FoodButton : MonoBehaviour
         {
             PlayerController.instance.UpdateStats(healthGiven, anxietyGiven, selfAwarenessGiven);
             CircuitControl.instance.AddQtyToTotals(circuitsGiven);
+
+            if(circuitsGiven >= 30)
+                FindObjectOfType<LightController>().BlinkLight();
 
             StartCoroutine(Cooldown(cooldownFactor));
         }

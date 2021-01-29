@@ -63,12 +63,13 @@ public class CircuitControl : MonoBehaviour
             FindObjectOfType<LampScript>().BeepAlarm();
         }
 
-        if (this.qtyCircuits >= requiredCircuits &&
-            FindObjectOfType<ProductivityScoreUI>().currentScore >= 10)
+        //if (this.qtyCircuits >= requiredCircuits &&
+        //    FindObjectOfType<ProductivityScoreUI>().currentScore >= 10)
+        if (this.qtyCircuits >= requiredCircuits)
         { 
             SceneGlosary.instance.TrueEnding();
         }
-        if (qtyCircuits >= maxQtyCircuitsCitizen &&
+        if (qtyCircuits >= maxQtyCircuitsCitizen ||
             FindObjectOfType<ProductivityScoreUI>().currentScore < 1)
         {
             SceneGlosary.instance.CitizenScoreZeroEnding();

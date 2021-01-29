@@ -64,6 +64,10 @@ public class SceneGlosary : MonoBehaviour
         LoadScene(1, false);
 
     }
+    public void MainMenu()
+    {
+        LoadScene(0, false);
+    }
 
 
 

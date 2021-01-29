@@ -29,6 +29,8 @@ public class ListStepOnClick : MonoBehaviour
 
             if (currIdx >= goList.Count)
                 goList[goList.Count - 1].SetActive(true);
+            else
+                goList[currIdx].SetActive(true);
             
         }
     }
