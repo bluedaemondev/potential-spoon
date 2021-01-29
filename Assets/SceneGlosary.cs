@@ -8,9 +8,6 @@ public class SceneGlosary : MonoBehaviour
 
     public static SceneGlosary instance { get; private set; }
 
-    public GameObject deadEndingGO;
-    public GameObject anxietyEndingGO;
-
     void Awake()
     {
         if (!instance)
@@ -21,26 +18,51 @@ public class SceneGlosary : MonoBehaviour
 
     void LoadScene(string sName)
     {
-        SceneManager.LoadScene(SceneManager.GetSceneByName(sName).buildIndex);
+        SceneManager.LoadScene(SceneManager.GetSceneByPath(sName).buildIndex);
+    }
+
+    void LoadScene(int bIdx, bool save=true)
+    {
+        if(save) { 
+        PlayerPrefs.SetFloat("prodScore",
+            FindObjectOfType<ProductivityScoreUI>().currentScore);
+
+        PlayerPrefs.SetFloat("anxiety",
+            PlayerController.instance.anxietyLevelCurrent);
+
+        PlayerPrefs.SetFloat("selfAw",
+            PlayerController.instance.selfAwarenesLevelCurrent);
+
+        PlayerPrefs.SetFloat("health",
+            PlayerController.instance.healthLevelCurrent);
+        }
+
+        SceneManager.LoadScene(bIdx);
     }
 
     public void AnxietyEnding()
     {
-        LoadScene("anxietyEnding");
+        LoadScene(2);
     }
 
     public void DeadEnding()
     {
-        LoadScene("deadEnding");
+        LoadScene(3);
     }
     public void CitizenScoreZeroEnding()
     {
-        LoadScene("citizenEnding");
+        LoadScene(4);
     }
 
     public void TrueEnding()
     {
-        LoadScene("trueEnding");
+        LoadScene(5);
+    }
+
+    public void GameMainScene()
+    {
+        LoadScene(1, false);
+
     }
 
 

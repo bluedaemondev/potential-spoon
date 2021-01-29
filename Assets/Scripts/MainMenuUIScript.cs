@@ -15,25 +15,33 @@ public class MainMenuUIScript : MonoBehaviour
         ShowMainMenu();
     }
 
+    public void InstagramLink()
+    {
+        Application.OpenURL("http://instagram.com/bluedaemonart");
+    }
+    public void YoutubeLink()
+    {
+        Application.OpenURL("https://www.youtube.com/channel/UC6yn5SLH7tFb5_-hEPkfx3Q");
+    }
 
     public void ShowMainMenu()
     {
         mainPanel.SetActive(true);
 
-        creditsPanel.SetActive(false);
-        howToPlayPanel.SetActive(false);
+        //creditsPanel.SetActive(false);
+        //howToPlayPanel.SetActive(false);
     }
     public void PlayNextScene()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
         //ManagerIntroduccion.instance.startIntroductionEvent.Invoke();
         //ManagerIntroduccion.instance.DisableChildren();
 
         Debug.Log("playing ");
-        this.mainPanel.SetActive(false);
-        this.howToPlayPanel.SetActive(false);
-        this.creditsPanel.SetActive(false);
+        //this.mainPanel.SetActive(false);
+        //this.howToPlayPanel.SetActive(false);
+        //this.creditsPanel.SetActive(false);
 
     }
     public void ShowCredits()

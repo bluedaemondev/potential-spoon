@@ -22,22 +22,14 @@ public class ListStepOnClick : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (currIdx >= 0 && currIdx != goList.Count - 1)
+            if (currIdx >= 0 && currIdx < goList.Count-1)
                 goList[currIdx].SetActive(false);
 
             currIdx++;
 
-            //if (currIdx >= goList.Count)
-            //{
-            //    SceneManager.LoadScene(0);
-
-            //    //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            //}
-            //else
-            //{
-                goList[currIdx].SetActive(true);
-
-            //}
+            if (currIdx >= goList.Count)
+                goList[goList.Count - 1].SetActive(true);
+            
         }
     }
 }

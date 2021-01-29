@@ -54,11 +54,11 @@ public class PlayerController : MonoBehaviour
 
         currentTimer = 0;
 
-        anxietyLevelCurrent += anxietyLost;
-        selfAwarenesLevelCurrent += selfAwarenessLost;
-        healthLevelCurrent -= healthLost;
-
-        UpdateUI();
+        UpdateStats(-healthLost, anxietyLost, selfAwarenessLost);
+        
+        //anxietyLevelCurrent += anxietyLost;
+        //selfAwarenesLevelCurrent += selfAwarenessLost;
+        //healthLevelCurrent -= healthLost;
 
         if (anxietyLevelCurrent >= 100 || selfAwarenesLevelCurrent >= 100 ||
             healthLevelCurrent <= 0)
@@ -74,14 +74,46 @@ public class PlayerController : MonoBehaviour
         this.anxietyLevelCurrent += anxietyG;
         this.selfAwarenesLevelCurrent += selfAwarG;
 
+        Debug.Log("Updating H,A,S ...  " +
+            healthLevelCurrent.ToString() + " , " +
+            anxietyLevelCurrent.ToString() + " , " +
+            selfAwarenesLevelCurrent.ToString());
+
+        this.healthLevelCurrent = FloorStat(healthLevelCurrent);
+        this.anxietyLevelCurrent = FloorStat(anxietyLevelCurrent);
+        this.selfAwarenesLevelCurrent = FloorStat(selfAwarenesLevelCurrent);
+
+        Debug.Log("Clamped H,A,S ...  " +
+           healthLevelCurrent.ToString() + " , "+
+           anxietyLevelCurrent.ToString() + " , " +
+           selfAwarenesLevelCurrent.ToString());
+
         //update ui
         UpdateUI();
 
     }
 
+    private float FloorStat(float level)
+    {
+        if (level <= 0)
+            level = 0;
+        else if (level > 100)
+            level = 100;
+
+        return level;
+    }
+
     void UpdateUI()
     {
-        FindObjectOfType<DebugUI>().SetValueForText("anx " + anxietyLevelCurrent + ". saw " + selfAwarenesLevelCurrent + ". hlth " + healthLevelCurrent);
+
+        FloatRangeInTextUI[] uiMarkers = FindObjectsOfType<FloatRangeInTextUI>();
+        foreach(var marker in uiMarkers)
+        {
+            marker.UpdateStatus();
+        }
+
+        //FindObjectOfType<DebugUI>().SetValueForText("anx " + anxietyLevelCurrent + ". saw " + selfAwarenesLevelCurrent + ". hlth " + healthLevelCurrent);
+
 
     }
     void HandlePlayerLose()

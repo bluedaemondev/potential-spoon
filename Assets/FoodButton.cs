@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FoodButton : MonoBehaviour
 {
-    [Range(0,1)]
+    [Range(0, 1)]
     public float cooldownFactor = 0.3f; //0.005 - 0.1 
 
     public float healthGiven = -10;
@@ -20,9 +21,6 @@ public class FoodButton : MonoBehaviour
 
     Color startColor;
 
-
-    //public float selfAwareness 
-
     //// Start is called before the first frame update
     void Start()
     {
@@ -31,11 +29,39 @@ public class FoodButton : MonoBehaviour
         startColor = sprrend.color;
     }
 
-    //// Update is called once per frame
-    //void Update()
+    private void OnMouseEnter()
+    {
+        string statsInt = CalcStringToDisplay();
+        FindObjectOfType<PanelInfoUI>().SetVisiblePanelStats(statsInt);
+
+    }
+    private void OnMouseExit()
+    {
+        FindObjectOfType<PanelInfoUI>().DisablePanel();
+    }
+
+    private string CalcStringToDisplay()
+    {
+        string result = "Anx " + (anxietyGiven > 0 ? "+" : "") + this.anxietyGiven + "\n";
+        result += "S.Awr " + (selfAwarenessGiven > 0 ? "+" : "") + this.selfAwarenessGiven + "\n";
+        result += "Hlth " + (healthGiven > 0 ? "+": "" ) + this.healthGiven + "\n";
+
+        result += "Circuits " + (circuitsGiven > 0 ? "-" : "") + this.circuitsGiven;
+
+        return result;
+    }
+
+    ///// <summary>
+    ///// Devuelve "+", "++" , "+++"
+    ///// o -
+    ///// </summary>
+    ///// <param name="input"></param>
+    ///// <returns></returns>
+    //public string NumberSigns(float input)
     //{
 
     //}
+
 
     private void OnMouseUp()
     {
@@ -55,10 +81,10 @@ public class FoodButton : MonoBehaviour
 
         maskCd.transform.localScale = Vector3.one * 0.1f; // mascara chica
         float currTimer = 0;
-        
 
 
-        while (maskCd.transform.localScale.x < 8)
+
+        while (maskCd.transform.localScale.x < 1.1f)
         {
             maskCd.transform.localScale += Vector3.one * cooldownFactor;
             currTimer += Time.deltaTime;

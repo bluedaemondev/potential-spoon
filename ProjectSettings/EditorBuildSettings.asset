@@ -6,9 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 2e6e72ca1da9ea844860796b8c0cd396
+  - enabled: 1
     path: Assets/Scenes/Game1.unity
     guid: 1d1cbcc4ebbee1044af67d570b6d5e9e
   - enabled: 1
     path: Assets/Scenes/anxietyEnding.unity
     guid: 4172097d19dbe1b4c8e171376160f5a3
+  - enabled: 1
+    path: Assets/Scenes/deadEnding.unity
+    guid: 1810a4d8ba8b5f7499a34e35d5d5c00e
+  - enabled: 1
+    path: Assets/Scenes/citizenScoreZeroEnding.unity
+    guid: 86533719f8fc2834bb148f729c047e21
+  - enabled: 1
+    path: Assets/Scenes/trueEnding.unity
+    guid: 923659585e2f4574092a9bdb953739f6
+  - enabled: 1
+    path: Assets/Scenes/StatsShowLastScene.unity
+    guid: 1fd8afce8c1db6c4891aaed095b27226
   m_configObjects: {}
